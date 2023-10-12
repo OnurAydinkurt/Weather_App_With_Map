@@ -1,8 +1,8 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoib251cm90dGkiLCJhIjoiY2xuZXpzYWZzMGpyNTJrcXB0M3o5ZHR1MyJ9.U95Ss-RH41MSrDthw6GFLQ';
 
 const map = new mapboxgl.Map({
-    container: 'map', 
-    style: 'mapbox://styles/mapbox/streets-v12',
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [35, 39], // starting position of Turkey [lng, lat]
     zoom: 5.85, // starting zoom
 });
@@ -12,17 +12,24 @@ map.on('click', function (e) {
     console.log('Tıklanan Konum:', coordinates);
 
     // "Get and process the weather data."
-    getWeatherData(coordinates.lat, coordinates.lng);
+    getWeatherData(coordinates.lat, coordinates.lng, coordinates);
 });
 
 const apiKey = '3b069168447c79928a63432b39458a7f';
-    function getWeatherData(lat, lng) {
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}`;
+    function getWeatherData(lat, lon, coordinates) {
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+      
+      
 
       fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
           console.log('Hava Durumu Verileri:', data);
-          alert('Sıcaklık: ' + Math.round((data.main.temp - 273.15).toFixed(2)) + '°C');
+          let resultData = Math.round((data.main.temp - 273.15).toFixed(2));
+
+          new mapboxgl.Popup()
+          .setLngLat(coordinates)
+          .setHTML(`Sıcaklık: ${resultData} °C`)
+          .addTo(map);
         })
     }
