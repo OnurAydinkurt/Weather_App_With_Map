@@ -17,7 +17,7 @@ map.on('click', function (e) {
 
 const apiKey = '3b069168447c79928a63432b39458a7f';
     function getWeatherData(lat, lgn, coordinates) {
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lgn=${lgn}&appid=${apiKey}`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lgn}&appid=${apiKey}`;
       
       
 
