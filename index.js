@@ -4,7 +4,7 @@ const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: [35, 39], // starting position of Turkey [lng, lat]
-    zoom: 5.85, // starting zoom
+    zoom: 5.8, // starting zoom
 });
 
 map.on('click', function (e) {
