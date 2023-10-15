@@ -28,7 +28,7 @@ const apiKey = '3b069168447c79928a63432b39458a7f';
           let resultData = Math.round((data.main.temp - 273.15).toFixed(2));
           let name = data.name;
           let sky = data.weather[0].main;
-          let popUpMessage = `Şehir: ${name}<br>Sıcaklık: ${resultData} °C<br>Gökyüzü: ${sky}`;
+          let popUpMessage = `Şehir/İlçe: ${name}<br>Sıcaklık: ${resultData} °C<br>Gökyüzü: ${sky}`;
 
           new mapboxgl.Popup()
           .setLngLat(coordinates)
